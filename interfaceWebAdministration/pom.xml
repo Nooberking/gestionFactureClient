@@ -14,7 +14,6 @@
     <packaging>war</packaging>
 
     <name>interfaceWebAdministration Maven Webapp</name>
-    <!-- FIXME change it to the project's website -->
     <url>https://www.example.com</url>
 
     <properties>
