@@ -1,5 +1,9 @@
 package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient;
 
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.DAO.ClientDAO;
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Impl.ClientDAOImpl;
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Client;
+
 import java.util.List;
 
 /**

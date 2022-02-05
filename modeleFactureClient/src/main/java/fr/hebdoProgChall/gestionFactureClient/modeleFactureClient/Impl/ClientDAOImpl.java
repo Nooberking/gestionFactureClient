@@ -1,4 +1,7 @@
-package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient;
+package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Impl;
+
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.DAO.ClientDAO;
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Client;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

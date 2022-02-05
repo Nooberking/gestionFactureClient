@@ -1,4 +1,4 @@
-package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient;
+package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model;
 
 public class Client {
     private int cli_code;
