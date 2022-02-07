@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ClientDAOImpl implements ClientDAO {
+public class ClientDAOImpl implements ClientDAO  {
 
     String url = "jdbc:mysql://localhost:3306/hebdochall3";
     String driver = "com.mysql.cj.jdbc.Driver";
