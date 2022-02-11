@@ -7,10 +7,10 @@
         <title>Display names</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Clients</h1>
         <ul>
             <c:forEach var="client" items="${allClients}">
-                <li>Nom : ${client.getCli_nom} Prénom : ${client.getCli_prenom}</li>
+                <li>Nom : ${client.cli_nom} || Prénom : ${client.cli_prenom}</li>
             </c:forEach>
         </ul>
     </body>
