@@ -2,6 +2,7 @@ package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Impl;
 
 import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.DAO.ClientDAO;
 import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Client;
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Connexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,20 +12,16 @@ import java.util.ArrayList;
 
 public class ClientDAOImpl implements ClientDAO  {
 
-    String url = "jdbc:mysql://localhost:3306/hebdochall3";
-    String driver = "com.mysql.cj.jdbc.Driver";
-    String username = "Challenger";
-    String password = "4Jaz643bXXorAFDCFD86R2WtEzqahy";
 
 
     @Override
     public ArrayList<Client> findAll() throws Exception {
+        Connexion connexion = new Connexion();
 
         ArrayList<Client> allClients = new ArrayList<>();
 
-        Class.forName(driver);
 
-        Connection conn = DriverManager.getConnection(url, username, password);
+        Connection conn = connexion.on();
 
         Statement stmt = conn.createStatement();
 

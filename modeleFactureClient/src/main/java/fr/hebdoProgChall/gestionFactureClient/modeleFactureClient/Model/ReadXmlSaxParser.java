@@ -16,8 +16,9 @@ public class ReadXmlSaxParser {
         try {
             SAXParser saxParser = factory.newSAXParser();
 
-            PrintAllHandleSax handler = new PrintAllHandleSax();
+            SaxHandlerPerso handler = new SaxHandlerPerso();
             saxParser.parse(FILENAME,handler);
+
         } catch (ParserConfigurationException | SAXException | IOException e)
         {
             e.printStackTrace();

@@ -20,6 +20,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>fr.hebdoProgChall.gestionFactureClient</groupId>
+            <artifactId>modeleFactureClient</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 

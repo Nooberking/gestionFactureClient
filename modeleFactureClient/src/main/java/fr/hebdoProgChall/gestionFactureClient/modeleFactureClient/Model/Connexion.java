@@ -1,24 +1,39 @@
 package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import java.io.File;
+
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Connexion {
-    public void on() {
+    private static final String FILENAME = "BDDConfig.xml";
+    SAXParserFactory factory = SAXParserFactory.newInstance();
+
+    public Connection on() {
         try {
-            File file = new File("BDDConfig.xml");
-            JAXBContext jaxbContext = JAXBContext.newInstance(BDDConfig.class);
+            SAXParser saxParser = factory.newSAXParser();
+            SaxHandlerPerso handler = new SaxHandlerPerso();
+            saxParser.parse(FILENAME,handler);
 
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            BDDConfig bdd =(BDDConfig) jaxbUnmarshaller.unmarshal(file);
+            Class.forName(handler.getDriver());
+            return DriverManager.getConnection(handler.getUrl(), handler.getUsername(), handler.getPassword());
 
+        } catch (ParserConfigurationException |
+                SAXException |
+                IOException |
+                ClassNotFoundException |
+                SQLException e){
 
-        } catch(JAXBException e){
             e.printStackTrace();
-
+            return null;
         }
 
     }
+
 }
