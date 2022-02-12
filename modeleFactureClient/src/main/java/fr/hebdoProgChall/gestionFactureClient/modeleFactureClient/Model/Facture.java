@@ -1,18 +1,20 @@
 package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model;
 
+import java.sql.Date;
+
 public class Facture {
     private int id;
     private int id_cli;
     private int tva;
     private String loc_pdf;
-    private String date;
+    private Date date_creation;
 
-    public Facture(int id, int id_cli, int tva, String loc_pdf, String date) {
+    public Facture(int id, int id_cli, int tva, String loc_pdf, Date date_creation) {
         this.id = id;
         this.id_cli = id_cli;
         this.tva = tva;
         this.loc_pdf = loc_pdf;
-        this.date = date;
+        this.date_creation = date_creation;
     }
 
     public int getId() {
@@ -47,11 +49,11 @@ public class Facture {
         this.loc_pdf = loc_pdf;
     }
 
-    public String getDate() {
-        return date;
+    public Date getDate_creation() {
+        return date_creation;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate_creation(Date date_creation) {
+        this.date_creation = date_creation;
     }
 }
