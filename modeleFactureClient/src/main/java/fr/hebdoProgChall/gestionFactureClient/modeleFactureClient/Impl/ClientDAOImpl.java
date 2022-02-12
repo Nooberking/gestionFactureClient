@@ -47,7 +47,6 @@ public class ClientDAOImpl implements ClientDAO  {
 
     }
 
-
     public ArrayList<Client> findBy(String Colonne, Object value, String... ordre) throws Exception {
         Connexion connexion = new Connexion();
         ArrayList<Client> allClients =new ArrayList<Client>();
@@ -75,6 +74,81 @@ public class ClientDAOImpl implements ClientDAO  {
         rs.close();stmt.close();conn.close();
 
         return allClients ;
+
+    }
+
+    public void add(String cli_nom,
+                    String cli_prenom,
+                    String cli_adr,
+                    String cli_comp,
+                    int cli_cp,
+                    String cli_ville,
+                    String tel) throws Exception
+    {
+        Connexion connexion = new Connexion();
+        Connection conn = connexion.on();
+        String sql = "INSERT INTO client (CLI_NOM, CLI_PRENOM, CLI_ADR, CLI_COMP, CLI_CP, CLI_VILLE, TEL)"
+                + "VALUES (?,?,?,?,?,?,?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1,cli_nom);
+        stmt.setString(2,cli_prenom);
+        stmt.setString(3,cli_adr);
+        stmt.setString(4,cli_comp);
+        stmt.setInt(5,cli_cp);
+        stmt.setString(6,cli_ville);
+        stmt.setString(7,tel);
+        stmt.executeUpdate();
+        stmt.close();conn.close();
+
+
+
+    }
+
+    public void delete(int cli_code) throws Exception{
+        Connexion connexion = new Connexion();
+        Connection conn = connexion.on();
+        String sql = "DELETE FROM client WHERE CLI_CODE = ?";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1,cli_code);
+
+        int success = stmt.executeUpdate();
+        stmt.close();conn.close();
+    }
+
+
+    public void update(
+            int cli_code,
+            String cli_nom,
+            String cli_prenom,
+            String cli_adr,
+            String cli_comp,
+            int cli_cp,
+            String cli_ville,
+            String tel) throws Exception {
+        Connexion connexion = new Connexion();
+        Connection conn = connexion.on();
+        String sql = "UPDATE client " +
+                "SET CLI_NOM = ?, " +
+                "CLI_PRENOM = ?, " +
+                "CLI_ADR = ?, " +
+                "CLI_COMP = ?, " +
+                "CLI_CP = ?, " +
+                "CLI_VILLE = ?, " +
+                "TEL = ? " +
+                "WHERE CLI_CODE = ? ";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1,cli_nom);
+        stmt.setString(2,cli_prenom);
+        stmt.setString(3,cli_adr);
+        stmt.setString(4,cli_comp);
+        stmt.setInt(5,cli_cp);
+        stmt.setString(6,cli_ville);
+        stmt.setString(7,tel);
+        stmt.setInt(8,cli_code);
+        int success = stmt.executeUpdate();
+        stmt.close();conn.close();
+
 
     }
 

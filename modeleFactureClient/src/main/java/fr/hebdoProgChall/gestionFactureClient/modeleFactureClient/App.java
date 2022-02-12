@@ -23,12 +23,16 @@ public class App
         try {
             allClients = ClientAccess.findAll("CLI_CODE");
             allClientsId = ClientAccess.findBy("CLI_CODE",1);
-            allClientsNom = ClientAccess.findBy("CLI_NOM","Le Testeur");
+            allClientsNom = ClientAccess.findBy("CLI_NOM","MANNNA");
+            //ClientAccess.add("MANUEL","David","50 rue des tiercelins", "porte en haut", 54000,"Nancy","0658803881");
+            ClientAccess.delete(4);
+            ClientAccess.update(3,"MBULUKU","David","50 rue des tiercelins", "porte en haut", 54000,"Nancy","0658803881");
 
         }catch (Exception e) {
             e.printStackTrace();
         }
 
+        assert allClients != null;
         for (Client currentC : allClients)
         {
             System.out.println(currentC.getCli_nom()+ " " +currentC.getCli_prenom() );
@@ -40,6 +44,9 @@ public class App
         for (Client currentC3 : allClientsNom){
             System.out.print("TestNom : " + currentC3.getCli_nom()+ " " +currentC3.getCli_prenom());
         }
+
+
+
 
     }
 }
