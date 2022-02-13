@@ -24,7 +24,7 @@ public class App
             allClients = ClientAccess.findAll("CLI_CODE");
             allClientsId = ClientAccess.findBy("CLI_CODE",1);
             allClientsNom = ClientAccess.findBy("CLI_NOM","MANNNA");
-            //ClientAccess.add("MANUEL","David","50 rue des tiercelins", "porte en haut", 54000,"Nancy","0658803881");
+            ClientAccess.add("MANUEL","David","50 rue des tiercelins", "porte en haut", 54000,"Nancy","0658803881");
             ClientAccess.delete(4);
             ClientAccess.update(3,"MBULUKU","David","50 rue des tiercelins", "porte en haut", 54000,"Nancy","0658803881");
 

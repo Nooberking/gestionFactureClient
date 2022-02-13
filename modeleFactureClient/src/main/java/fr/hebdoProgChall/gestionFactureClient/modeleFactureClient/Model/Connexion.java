@@ -12,7 +12,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Connexion {
-    private static final String FILENAME = "BDDConfig.xml";
+    // Saisir ici l'url où a été placé le projet
+    private  static final String URLPROJECT = "C:\\Users\\david\\IdeaProjects\\gestionFactureClient";
+
+    private static final String FILENAME = URLPROJECT+"\\BDDConfig.xml";
     SAXParserFactory factory = SAXParserFactory.newInstance();
 
     public Connection on() {

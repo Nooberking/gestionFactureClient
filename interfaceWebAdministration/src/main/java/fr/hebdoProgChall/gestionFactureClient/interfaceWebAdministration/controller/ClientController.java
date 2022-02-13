@@ -38,7 +38,7 @@ public class ClientController extends HttpServlet {
             e.printStackTrace();
         }
         req.setAttribute("allClients",allClients);
-        this.getServletContext().getRequestDispatcher("/WEB-INF/View.jsp").forward(req,resp);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/ClientView.jsp").forward(req,resp);
     }
 
     @Override
