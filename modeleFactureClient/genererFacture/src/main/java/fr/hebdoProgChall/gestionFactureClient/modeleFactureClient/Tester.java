@@ -1,14 +1,40 @@
 package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient;
 
 
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Client;
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Facture;
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Ligne;
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Produit;
+
 import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
 
 public class Tester
 {
     public static void main( String[] args ) throws IOException
     {
+        Date date = new Date(2022,02,16);
+
+        Facture facture = new Facture(1,1,1.20,"test",date);
+        Client client = new Client(1,"Manuel","David","50 Rue du mont Valérien","B",54000,"Nancy","06 58 80 38 81");
+        Ligne l1 = new Ligne(1,1,2,3);
+        Ligne l2 = new Ligne(1,2,4,2);
+        Ligne l3 = new Ligne(1,3,55,1);
+        ArrayList<Ligne> lignes = new ArrayList<Ligne>();
+        lignes.add(l1);
+        lignes.add(l2);
+        lignes.add(l3);
+
+        Produit p1 = new Produit(2,"banane","fruit",2.50);
+        Produit p2 = new Produit(4,"pomme","fruit",3.50);
+        Produit p3 = new Produit(55,"télévision","multimédia",150);
+        ArrayList<Produit> produits = new ArrayList<>();
+        produits.add(p1);
+        produits.add(p2);
+        produits.add(p3);
         CompletionFacture nc = new CompletionFacture();
-        nc.generate(01);
+        nc.generate(facture,client,lignes,produits);
         /*File file = new File("C:\\Users\\david\\IdeaProjects\\gestionFactureClient\\generationFacture\\src\\main\\resources\\Facture Template.xlsx");
         FileInputStream inputStream = new FileInputStream(file);
         Double subTot = 0.0 ;
@@ -79,9 +105,6 @@ public class Tester
         FileOutputStream out = new FileOutputStream(file);
         workbook.write(out);
         out.close();*/
-
-        CompletionFacture cpFacture = new CompletionFacture();
-        cpFacture.generate(2);
 
 
     }

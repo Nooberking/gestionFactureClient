@@ -5,11 +5,11 @@ import java.sql.Date;
 public class Facture {
     private int id;
     private int id_cli;
-    private int tva;
+    private double tva;
     private String loc_pdf;
     private Date date_creation;
 
-    public Facture(int id, int id_cli, int tva, String loc_pdf, Date date_creation) {
+    public Facture(int id, int id_cli, double tva, String loc_pdf, Date date_creation) {
         this.id = id;
         this.id_cli = id_cli;
         this.tva = tva;
@@ -33,11 +33,11 @@ public class Facture {
         this.id_cli = id_cli;
     }
 
-    public int getTva() {
+    public double getTva() {
         return tva;
     }
 
-    public void setTva(int tva) {
+    public void setTva(double tva) {
         this.tva = tva;
     }
 
