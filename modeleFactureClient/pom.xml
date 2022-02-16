@@ -11,9 +11,13 @@
 
     <groupId>fr.hebdoProgChall.gestionFactureClient</groupId>
     <artifactId>modeleFactureClient</artifactId>
+    <packaging>pom</packaging>
 
     <name>modeleFactureClient</name>
     <url>https://www.example.com</url>
+    <modules>
+        <module>genererFacture</module>
+    </modules>
 
     <properties>
     </properties>
