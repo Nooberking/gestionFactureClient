@@ -12,6 +12,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/PDFGenerator/pom.xml" />
         <option value="$PROJECT_DIR$/generationFacture/pom.xml" />
       </set>
     </option>

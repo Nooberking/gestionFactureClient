@@ -23,7 +23,11 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.22</version>
+        </dependency>
 
     </dependencies>
 
@@ -49,7 +53,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.App</mainClass>
+                            <mainClass>fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.TestPDF</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -64,7 +68,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.App</mainClass>
+                            <mainClass>fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.TestPDF</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
