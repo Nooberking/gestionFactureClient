@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class Connexion {
     // Saisir ici l'url où a été placé le projet
-    private  static final String URLPROJECT = "C:\\Users\\david\\IdeaProjects\\gestionFactureClient";
+    private  static final String URLPROJECT = "D:\\HebdoProgChallenge\\gestionFactureClient";
 
     private static final String FILENAME = URLPROJECT+"\\BDDConfig.xml";
     SAXParserFactory factory = SAXParserFactory.newInstance();

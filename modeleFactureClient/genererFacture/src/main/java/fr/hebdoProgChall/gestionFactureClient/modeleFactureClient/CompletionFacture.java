@@ -1,5 +1,7 @@
 package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient;
 
+import com.aspose.cells.SaveFormat;
+import com.aspose.cells.Workbook;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -98,6 +100,17 @@ public class CompletionFacture {
         FileOutputStream out = new FileOutputStream(dest);
         wk.write(out);
         out.close();
+        try {
+            Workbook workbook = new Workbook("D:\\HebdoProgChallenge\\gestionFactureClient\\modeleFactureClient\\" +
+                    "genererFacture\\src\\main\\resources\\factures\\Facture n°" + id + ".xlsx");
+
+
+            workbook.save("D:\\HebdoProgChallenge\\gestionFactureClient\\modeleFactureClient\\" +
+                    "genererFacture\\src\\main\\resources\\factures\\Facture n°" + id + ".pdf", SaveFormat.PDF);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
 
 
