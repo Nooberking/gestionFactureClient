@@ -17,6 +17,7 @@ import org.vandeseer.easytable.structure.cell.TextCell;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static java.awt.Color.*;
@@ -35,12 +36,13 @@ public class TemplatePerso {
     List<Integer> ProductQty = new ArrayList<Integer>();
     int numPage = 0;
     int totalPage = 1;
+    int maxArticleParPage = 25;
     int tailleBasPage = 85;
     final Color BLUE_DARK = new Color(76, 129, 190);
     final Color BLUE_LIGHT_1 = new Color(186, 206, 230);
     final Color BLUE_LIGHT_2 = new Color(218, 230, 242);
 
-    private final static Object[][] DATA = new Object[][]{
+    Object[][] DATA = new Object[][]{
             {"Whisky", 134.0, 145.0},
             {"Beer",   768.0, 677.0},
             {"Gin",    456.2, 612.0},
@@ -60,7 +62,26 @@ public class TemplatePerso {
             {"Whisky", 134.0, 145.0},
             {"Beer",   768.0, 677.0},
             {"Gin",    456.2, 612.0},
-            {"Vodka",  302.3, 467.0}
+            {"Vodka",  302.3, 467.0},
+            {"Whisky", 134.0, 145.0},
+            {"Beer",   768.0, 677.0},
+            {"Gin",    456.2, 612.0},
+            {"Vodka",  302.3, 467.0},
+            {"Whisky", 134.0, 145.0},
+            {"Beer",   768.0, 677.0},
+            {"Gin",    456.2, 612.0},
+            {"Vodka",  302.3, 467.0},
+            {"Whisky", 134.0, 145.0},
+            {"Beer",   768.0, 677.0},
+            {"Gin",    456.2, 612.0},
+            {"Vodka",  302.3, 467.0},
+            {"Whisky", 134.0, 145.0},
+            {"Beer",   768.0, 677.0},
+            {"Gin",    456.2, 612.0},
+            {"Vodka",  302.3, 467.0},
+            {"Whisky", 134.0, 145.0},
+            {"Beer",   768.0, 677.0},
+
 
 
 
@@ -138,31 +159,148 @@ public class TemplatePerso {
             cs.endText();
 
 
-            // Génération tableau de listing des produits
-            Table myTable = this.createSimpleExampleTable();
+            if (DATA.length > 20){
+                //séparation des produits en produits par pages
+                ArrayList<Object[][]> lignesPages = new ArrayList<>();
+                lignesPages.add(Arrays.copyOfRange(DATA,0,20));
+                for (int i=0; i< ((DATA.length - 20) / maxArticleParPage) ;i++){
+                    lignesPages.add(Arrays.copyOfRange(DATA,20 + maxArticleParPage * i, 20 + maxArticleParPage * (i + 1) ));
+            }
+                totalPage = lignesPages.size();
 
-            TableDrawer tableDrawer = TableDrawer.builder()
-                    .contentStream(cs)
-                            .startX(50f)
-                            .startY(550f)
-                            .table(myTable).build();
+                //première page
+                Table firstTable = this.createSimpleExampleTable(lignesPages.get(0));
+                TableDrawer tableDrawer = TableDrawer.builder()
+                        .contentStream(cs)
+                        .startX(50f)
+                        .startY(550f)
+                        .table(firstTable).build();
 
-            tableDrawer.draw();
+                tableDrawer.draw();
+                //Ajout nombre de pages
+                cs.beginText();
+                cs.setFont(PDType1Font.TIMES_ROMAN, 18);
+                cs.newLineAtOffset(480, 30);
+                cs.showText("page "+ (numPage + 1) + " / " + totalPage );
+                numPage ++;
+                cs.endText();
+                cs.close();
 
-            //Ajout nombre de pages
-            cs.beginText();
+                //si pages intermédiaires
+                if (lignesPages.size() > 2 )
+                {
+                    for(int i = 1; i<lignesPages.size() - 1 ; i++ )
+                    {
+                        //Ajout de pages
+                        newpage = new PDPage(PDRectangle.A4);
+                        facture.addPage(newpage);
+                        page = facture.getPage(numPage);
 
-            cs.setFont(PDType1Font.TIMES_ROMAN, 18);
-            cs.newLineAtOffset(480,30);
-            cs.showText("page 1 / 1");
-            cs.endText();
+                        //logo
+                         cs = new PDPageContentStream(facture,page, PDPageContentStream.AppendMode.APPEND, true, true );
+                         scale = 0.5f;
+                         cs.drawImage(pdImage, 420,620 + tailleBasPage ,pdImage.getWidth() * scale, pdImage.getHeight() * scale);
 
+                         //Titre
+                        cs.beginText();
+                        cs.setNonStrokingColor(15, 176, 253);
+                        cs.setFont(PDType1Font.TIMES_ROMAN, 32);
+                        cs.newLineAtOffset(50,720 + tailleBasPage);
+                        cs.showText("Facture n° ");
+                        cs.endText();
+
+                         firstTable = this.createSimpleExampleTable(lignesPages.get(i));
+                         tableDrawer = TableDrawer.builder()
+                                .contentStream(cs)
+                                .startX(50f)
+                                .startY(625f)
+                                .table(firstTable).build();
+
+                        tableDrawer.draw();
+
+
+                        //Ajout nombre de pages
+                        cs.beginText();
+                        cs.setFont(PDType1Font.TIMES_ROMAN, 18);
+                        cs.newLineAtOffset(480, 30);
+                        cs.showText("page "+ (numPage + 1) + " / " + totalPage );
+                        numPage ++;
+                        cs.endText();
+                        cs.close();
+                    }
+                }
+
+                //ajout de la dernière page
+                newpage = new PDPage(PDRectangle.A4);
+                facture.addPage(newpage);
+                page = facture.getPage(numPage);
+
+                //logo
+                cs = new PDPageContentStream(facture,page, PDPageContentStream.AppendMode.APPEND, true, true );
+                scale = 0.5f;
+                cs.drawImage(pdImage, 420,620 + tailleBasPage ,pdImage.getWidth() * scale, pdImage.getHeight() * scale);
+
+                //Titre
+                cs.beginText();
+                cs.setNonStrokingColor(15, 176, 253);
+                cs.setFont(PDType1Font.TIMES_ROMAN, 32);
+                cs.newLineAtOffset(50,720 + tailleBasPage);
+                cs.showText("Facture n° ");
+                cs.endText();
+                cs.beginText();
+                cs.setNonStrokingColor(15, 176, 253);
+                cs.setFont(PDType1Font.TIMES_ROMAN, 32);
+                cs.newLineAtOffset(50,720 + tailleBasPage);
+                cs.showText("Facture n° ");
+                cs.endText();
+
+                firstTable = this.createSimpleExampleTable(lignesPages.get(lignesPages.size() - 1) );
+                tableDrawer = TableDrawer.builder()
+                        .contentStream(cs)
+                        .startX(50f)
+                        .startY(625f)
+                        .table(firstTable).build();
+
+                tableDrawer.draw();
+
+
+                //Ajout nombre de pages
+                cs.beginText();
+                cs.setFont(PDType1Font.TIMES_ROMAN, 18);
+                cs.newLineAtOffset(480, 30);
+                cs.showText("page "+ ( numPage + 1) + " / " + totalPage );
+                numPage ++;
+                cs.endText();
+
+
+
+            }
+            else {
+                // Génération tableau de listing des produits
+                Table myTable = this.createSimpleExampleTable(DATA);
+
+                TableDrawer tableDrawer = TableDrawer.builder()
+                        .contentStream(cs)
+                        .startX(50f)
+                        .startY(550f)
+                        .table(myTable).build();
+
+                tableDrawer.draw();
+
+                //Ajout nombre de pages
+                cs.beginText();
+
+                cs.setFont(PDType1Font.TIMES_ROMAN, 18);
+                cs.newLineAtOffset(480, 30);
+                cs.showText("page 1 / 1");
+                cs.endText();
+            }
             //Génération du tableau du total
 
             Table.TableBuilder tableBuilder = Table.builder()
-                    .addColumnsOfWidth(100,100)
-                            .fontSize(12)
-                            .font(HELVETICA);
+                    .addColumnsOfWidth(100, 100)
+                    .fontSize(12)
+                    .font(HELVETICA);
 
             tableBuilder.addRow(Row.builder()
                     .add(TextCell.builder().text("Sous-total").borderWidth(1).build())
@@ -191,14 +329,10 @@ public class TemplatePerso {
             tDrawer.draw();
 
 
-
-
-
-
-
             cs.close();
             //sauvegarde du fichier
             facture.save("./testPerso.pdf");
+
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -214,7 +348,7 @@ public class TemplatePerso {
 
 
     }
-    public Table createSimpleExampleTable() {
+    public Table createSimpleExampleTable(Object[][] data) {
 
         final Table.TableBuilder tableBuilder = Table.builder()
                 .addColumnsOfWidth(200, 100, 100, 100)
@@ -237,8 +371,8 @@ public class TemplatePerso {
 
         // Ajout des lignes
         double grandTotal = 0;
-        for (int i = 0; i < DATA.length; i++) {
-            final Object[] dataRow = DATA[i];
+        for (int i = 0; i < data.length; i++) {
+            final Object[] dataRow = data[i];
             final double total = (double) dataRow[1] + (double) dataRow[2];
             grandTotal += total;
 
