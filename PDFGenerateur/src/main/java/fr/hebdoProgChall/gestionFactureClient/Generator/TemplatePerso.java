@@ -18,6 +18,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static java.awt.Color.*;
@@ -35,7 +36,7 @@ public class TemplatePerso {
     List<Integer> ProductPrice = new ArrayList<Integer>();
     List<Integer> ProductQty = new ArrayList<Integer>();
     int numPage = 0;
-    int totalPage = 1;
+    int totalPage = 2;
     int maxArticleParPage = 25;
     int tailleBasPage = 85;
     final Color BLUE_DARK = new Color(76, 129, 190);
@@ -43,44 +44,60 @@ public class TemplatePerso {
     final Color BLUE_LIGHT_2 = new Color(218, 230, 242);
 
     Object[][] DATA = new Object[][]{
-            {"Whisky", 134.0, 145.0},
-            {"Beer",   768.0, 677.0},
-            {"Gin",    456.2, 612.0},
-            {"Vodka",  302.3, 467.0},
-            {"Whisky", 134.0, 145.0},
-            {"Beer",   768.0, 677.0},
-            {"Gin",    456.2, 612.0},
-            {"Vodka",  302.3, 467.0},
-            {"Whisky", 134.0, 145.0},
-            {"Beer",   768.0, 677.0},
-            {"Gin",    456.2, 612.0},
-            {"Vodka",  302.3, 467.0},
-            {"Whisky", 134.0, 145.0},
-            {"Beer",   768.0, 677.0},
-            {"Gin",    456.2, 612.0},
-            {"Vodka",  302.3, 467.0},
-            {"Whisky", 134.0, 145.0},
-            {"Beer",   768.0, 677.0},
-            {"Gin",    456.2, 612.0},
-            {"Vodka",  302.3, 467.0},
-            {"Whisky", 134.0, 145.0},
-            {"Beer",   768.0, 677.0},
-            {"Gin",    456.2, 612.0},
-            {"Vodka",  302.3, 467.0},
-            {"Whisky", 134.0, 145.0},
-            {"Beer",   768.0, 677.0},
-            {"Gin",    456.2, 612.0},
-            {"Vodka",  302.3, 467.0},
-            {"Whisky", 134.0, 145.0},
-            {"Beer",   768.0, 677.0},
-            {"Gin",    456.2, 612.0},
-            {"Vodka",  302.3, 467.0},
-            {"Whisky", 134.0, 145.0},
-            {"Beer",   768.0, 677.0},
-            {"Gin",    456.2, 612.0},
-            {"Vodka",  302.3, 467.0},
-            {"Whisky", 134.0, 145.0},
-            {"Beer",   768.0, 677.0},
+            {"A", 134.0, 145.0},
+            {"B",   768.0, 677.0},
+            {"C",    456.2, 612.0},
+            {"D",  302.3, 467.0},
+            {"E", 134.0, 145.0},
+            {"F",   768.0, 677.0},
+            {"G",    456.2, 612.0},
+            {"H",  302.3, 467.0},
+            {"I", 134.0, 145.0},
+            {"J",   768.0, 677.0},
+            {"K",    456.2, 612.0},
+            {"L",  302.3, 467.0},
+            {"M", 134.0, 145.0},
+            {"N",   768.0, 677.0},
+            {"O",    456.2, 612.0},
+            {"P",  302.3, 467.0},
+            {"Q", 134.0, 145.0},
+            {"R",   768.0, 677.0},
+            {"S",    456.2, 612.0},
+            {"T",  302.3, 467.0},
+            {"U", 134.0, 145.0},
+            {"V",   768.0, 677.0},
+            {"W",    456.2, 612.0},
+            {"X",  302.3, 467.0},
+            {"Y", 134.0, 145.0},
+            {"Z",   768.0, 677.0},
+            {"a",    456.2, 612.0},
+            {"b",  302.3, 467.0},
+            {"c", 134.0, 145.0},
+            {"d",   768.0, 677.0},
+            {"e",    456.2, 612.0},
+            {"f",  302.3, 467.0},
+            {"g", 134.0, 145.0},
+            {"h",   768.0, 677.0},
+            {"i",    456.2, 612.0},
+            {"j",  302.3, 467.0},
+            {"k", 134.0, 145.0},
+            {"l",   768.0, 677.0},
+            {"m",   768.0, 677.0},
+            {"n",   768.0, 677.0},
+            {"o",   768.0, 677.0},
+            {"p",   768.0, 677.0},
+            {"q",   768.0, 677.0},
+            {"r",   768.0, 677.0},
+            {"s",   768.0, 677.0},
+            {"t",   768.0, 677.0},
+            {"u",   768.0, 677.0},
+            {"v",   768.0, 677.0},
+            {"w",   768.0, 677.0},
+            {"x",   768.0, 677.0},
+            {"y",   768.0, 677.0},
+            {"z",   768.0, 677.0}
+
+
 
 
 
@@ -163,9 +180,10 @@ public class TemplatePerso {
                 //séparation des produits en produits par pages
                 ArrayList<Object[][]> lignesPages = new ArrayList<>();
                 lignesPages.add(Arrays.copyOfRange(DATA,0,20));
-                for (int i=0; i< ((DATA.length - 20) / maxArticleParPage) ;i++){
+                for (int i=0; i<((DATA.length - 20) / maxArticleParPage) ;i++){
                     lignesPages.add(Arrays.copyOfRange(DATA,20 + maxArticleParPage * i, 20 + maxArticleParPage * (i + 1) ));
             }
+                lignesPages.add(Arrays.copyOfRange(DATA,((DATA.length - 20) / maxArticleParPage) * maxArticleParPage + 20, DATA.length));
                 totalPage = lignesPages.size();
 
                 //première page
