@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class Connexion {
     // Saisir ici l'url où a été placé le projet
-    private  static final String URLPROJECT = "D:\\HebdoProgChallenge\\gestionFactureClient";
+    private  static final String URLPROJECT = "C:\\Users\\david\\IdeaProjects\\gestionFactureClient";
 
     private static final String FILENAME = URLPROJECT+"\\BDDConfig.xml";
     SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -37,6 +37,23 @@ public class Connexion {
             return null;
         }
 
+    }
+    public String getDbName() {
+        SAXParser saxParser = null;
+        String result = "";
+        try {
+            saxParser = factory.newSAXParser();
+            SaxHandlerPerso handler = new SaxHandlerPerso();
+            saxParser.parse(FILENAME,handler);
+            result = handler.getName();
+        } catch (ParserConfigurationException |
+                SAXException |
+                IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return result ;
     }
 
 }

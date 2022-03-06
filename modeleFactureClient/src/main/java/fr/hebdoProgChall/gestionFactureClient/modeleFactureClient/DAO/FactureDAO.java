@@ -4,7 +4,7 @@ import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Facture;
 
 import java.util.ArrayList;
 
-public interface FactureDAO {
+public interface FactureDAO extends NameDbDAO {
     public ArrayList<Facture> findAll(String... ordre) throws Exception;
 
     public ArrayList<Facture> findBy(String colonne,Object value, String... ordre) throws Exception;

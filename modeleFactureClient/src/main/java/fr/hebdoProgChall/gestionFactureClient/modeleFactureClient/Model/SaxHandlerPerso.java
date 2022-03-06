@@ -5,6 +5,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class SaxHandlerPerso extends DefaultHandler {
+    private String name;
     private String url;
     private String driver;
     private String username;
@@ -26,6 +27,10 @@ public class SaxHandlerPerso extends DefaultHandler {
         return password;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private StringBuilder currentValue = new StringBuilder();
 
     @Override
@@ -37,6 +42,10 @@ public class SaxHandlerPerso extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
 
 
+        if(qName.equalsIgnoreCase("name")){
+            name = currentValue.toString();
+
+        }
         if(qName.equalsIgnoreCase("url")){
             url = currentValue.toString();
 

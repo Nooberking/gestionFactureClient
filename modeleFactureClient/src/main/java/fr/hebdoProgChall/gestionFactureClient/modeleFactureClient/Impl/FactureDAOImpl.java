@@ -14,6 +14,11 @@ import java.sql.Date;
 
 public class FactureDAOImpl implements FactureDAO {
 
+    public String getDbName() {
+        Connexion connexion = new Connexion();
+        return connexion.getDbName();
+    }
+
     public ArrayList<Facture> findAll(String... ordre) throws Exception {
         Connexion connexion = new Connexion();
         Connection conn = connexion.on();

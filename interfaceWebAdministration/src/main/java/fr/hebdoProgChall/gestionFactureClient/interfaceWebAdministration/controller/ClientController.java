@@ -30,14 +30,18 @@ public class ClientController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Client> allClients = null;
+        String dbName = "";
         ClientDAO clientAccess = new ClientDAOImpl();
 
         try {
             allClients = clientAccess.findAll();
+            dbName = clientAccess.getDbName();
+
         }catch (Exception e){
             e.printStackTrace();
         }
         req.setAttribute("allClients",allClients);
+        req.setAttribute("dbName", dbName);
         this.getServletContext().getRequestDispatcher("/WEB-INF/ClientView.jsp").forward(req,resp);
     }
 

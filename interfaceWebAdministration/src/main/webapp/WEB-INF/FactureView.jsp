@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="sb-sidenav-footer">
-                <div class="small">BDD Connectée : </div> Insérer ici le nom de la BDD
+                <div class="small">BDD Connectée : </div> <c:out value="${dbName}"/>
             </div>
         </nav>
     </div>

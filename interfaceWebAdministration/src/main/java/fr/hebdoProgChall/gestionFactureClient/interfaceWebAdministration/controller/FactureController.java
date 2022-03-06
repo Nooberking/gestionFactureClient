@@ -35,6 +35,7 @@ public class FactureController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Facture> allFactures = null;
+        String dbName ="";
 
         FactureDAO factureAccess = new FactureDAOImpl();
 
@@ -42,11 +43,13 @@ public class FactureController extends HttpServlet {
 
         try {
             allFactures = factureAccess.findAll();
+            dbName = factureAccess.getDbName();
 
         }catch (Exception e){
             e.printStackTrace();
         }
         req.setAttribute("allFactures",allFactures);
+        req.setAttribute("dbName",dbName);
         this.getServletContext().getRequestDispatcher("/WEB-INF/FactureView.jsp").forward(req,resp);
     }
 

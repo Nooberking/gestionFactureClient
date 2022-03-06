@@ -30,15 +30,19 @@ public class ProduitController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Produit> allProduits = null;
+        String dbName = "";
         ProduitDAO produitAccess = new ProduitDAOImpl();
 
 
         try {
             allProduits = produitAccess.findAll();
+            dbName = produitAccess.getDbName();
         }catch (Exception e){
             e.printStackTrace();
         }
         req.setAttribute("allProduits",allProduits);
+        req.setAttribute("dbName",dbName);
+
         this.getServletContext().getRequestDispatcher("/WEB-INF/ProduitView.jsp").forward(req,resp);
     }
 

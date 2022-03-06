@@ -14,6 +14,11 @@ import java.util.ArrayList;
 public class ProduitDAOImpl implements ProduitDAO {
 
 
+    public String getDbName() {
+        Connexion connexion = new Connexion();
+        return connexion.getDbName();
+    }
+
     public ArrayList<Produit> findAll(String... ordre) throws Exception {
         Connexion connexion = new Connexion();
 

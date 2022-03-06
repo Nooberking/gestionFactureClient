@@ -4,11 +4,12 @@ import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Client;
 
 import java.util.ArrayList;
 
-public interface ClientDAO {
+public interface ClientDAO extends NameDbDAO {
 
     public ArrayList<Client> findAll(String... ordre) throws Exception;
 
     public ArrayList<Client> findBy(String colonne,Object value, String... ordre ) throws Exception;
+
 
     public void add(String cli_nom,
                     String cli_prenom,

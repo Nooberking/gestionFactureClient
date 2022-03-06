@@ -1,16 +1,21 @@
 package fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Impl;
 
 import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.DAO.ClientDAO;
+import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.DAO.NameDbDAO;
 import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Client;
 import fr.hebdoProgChall.gestionFactureClient.modeleFactureClient.Model.Connexion;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ClientDAOImpl implements ClientDAO  {
+public class ClientDAOImpl implements ClientDAO {
 
 
-
+    @Override
+    public String getDbName() {
+        Connexion connexion = new Connexion();
+        return connexion.getDbName();
+    }
 
     public ArrayList<Client> findAll(String... ordre) throws Exception {
         Connexion connexion = new Connexion();

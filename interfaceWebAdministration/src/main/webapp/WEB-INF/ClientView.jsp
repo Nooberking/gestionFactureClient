@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="sb-sidenav-footer">
-                <div class="small">BDD Connectée : </div> Insérer ici le nom de la BDD
+                <div class="small">BDD Connectée : </div> <c:out value="${dbName}" />
             </div>
         </nav>
     </div>
@@ -85,6 +85,8 @@
                                 <th>Complément adresse</th>
                                 <th>Ville</th>
                                 <th>Téléphone</th>
+                                <th>Modifier</th>
+                                <th>Supprimer</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -95,6 +97,8 @@
                                 <th>Complément adresse</th>
                                 <th>Ville</th>
                                 <th>Téléphone</th>
+                                <th>Modifier</th>
+                                <th>Supprimer</th>
 
                             </tr>
                             </tfoot>
@@ -108,6 +112,18 @@
                                 <td>${client.getCli_comp()}</td>
                                 <td>${client.getCli_cp()} - ${client.getCli_ville()}</td>
                                 <td>${client.getTel()}</td>
+                                <td>
+                                    <a href="?1">
+                                        <input class="btn bg-success text-white" type="submit" value="Modifier"></input>
+                                    </a>
+
+                                </td>
+                                <td>
+                                    <a href="?2">
+                                        <input class="btn bg-danger text-white" type="submit" value="Supprimer"></input>
+                                    </a>
+                                </td>
+
                             </tr>
                             </c:forEach>
 
