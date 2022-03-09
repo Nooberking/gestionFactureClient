@@ -13,9 +13,9 @@ import java.sql.SQLException;
 
 public class Connexion {
     // Saisir ici l'url où a été placé le projet
-    private  static final String URLPROJECT = "C:\\Users\\david\\IdeaProjects\\gestionFactureClient";
+    private  static final String URLPROJECT = "http://localhost:8080/interfaceWebAdministration";
 
-    private static final String FILENAME = URLPROJECT+"\\BDDConfig.xml";
+    private static final String FILENAME = URLPROJECT+"/ressources/utils/BDDConfig.xml";
     SAXParserFactory factory = SAXParserFactory.newInstance();
 
     public Connection on() {

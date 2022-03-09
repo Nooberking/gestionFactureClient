@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Ici, tu peux modifier les identifiants de connexion de la table de BDD-->
+<bdd>
+    <type>MySQL</type>
+    <version>8.0.27</version>
+    <name>hebdochall3</name>
+    <url>jdbc:mysql://localhost:3306/hebdochall3</url>
+    <driver>com.mysql.cj.jdbc.Driver</driver>
+    <username>Challenger</username>
+    <password>4Jaz643bXXorAFDCFD86R2WtEzqahy</password>
+</bdd>
